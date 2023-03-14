@@ -1,39 +1,27 @@
 # Silent Auction
 
-# TODO Import Hammer ASCII Art and print
+import assets
+print(assets.hammer)
+print("Welcome to the Silent Auction Bid Recorder.")
 
+bid_database = {}
 
+def new_bid(name, amount):
+    bid_database[name] = amount
 
-# TODO Print a greeting
+auction_running = True
+while auction_running:
+    bid_name = input("Name of bidder: ")
+    bid_amount = float(input("Bid amount: $"))
+    # Format bid_amount to 2 decimal places regardless of decimals. Real represenetation of dollar (ex: $25.00)
+    bid_amount = "{:.2f}".format(bid_amount)
 
+    new_bid(bid_name, bid_amount)
+    another_bid = input("Is there another bidder? Types 'yes' or 'no': ")
+    if another_bid == "no":
+        auction_running = False
 
-
-# TODO Create a function that will take 2 arguments: Name and Bid Amount.
-#      Function will add them to a dictionary
-
-
-
-# TODO Input - Ask for client name
-
-
-
-# TODO Input - Ask for bid $
-
-
-
-# TODO Create an empty dictionary for Name and Bid
-
-
-
-# TODO Call function to input Name and Bid into dictionary
-
-
-
-# TODO Input - Is there another bidder? Yes or No, tied to while loop above the function.
-
-
-
-# TODO When while loop above ends, find and print highest bidder from dictionary.
-
-
+highest_bidder = max(bid_database, key = lambda key: bid_database[key])
+print(bid_database)
+print(f"The highest bidder is {highest_bidder}, with a bid of ${bid_database[highest_bidder]}")
 
