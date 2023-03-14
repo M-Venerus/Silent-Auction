@@ -13,15 +13,14 @@ auction_running = True
 while auction_running:
     bid_name = input("Name of bidder: ")
     bid_amount = float(input("Bid amount: $"))
-    # Format bid_amount to 2 decimal places regardless of decimals. Real represenetation of dollar (ex: $25.00)
-    bid_amount = "{:.2f}".format(bid_amount)
 
     new_bid(bid_name, bid_amount)
     another_bid = input("Is there another bidder? Types 'yes' or 'no': ")
     if another_bid == "no":
         auction_running = False
 
-highest_bidder = max(bid_database, key = lambda key: bid_database[key])
-print(bid_database)
-print(f"The highest bidder is {highest_bidder}, with a bid of ${bid_database[highest_bidder]}")
+highest_bidder = max(bid_database, key = bid_database.get)
+# Format function to force 2 decimal places to represent real dollar value (ex: $25 to $25.00)
+highest_bid = "{:.2f}".format(bid_database[highest_bidder])
+print(f"The highest bidder is {highest_bidder}, with a bid of ${highest_bid}")
 
